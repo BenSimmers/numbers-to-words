@@ -1,5 +1,9 @@
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import { fetchData } from "../api";
+import { ResponseData } from "../types";
+import ErrorBoundary from "./ErrorBoundary";
+
+const LazyNumberDisplay = React.lazy(() => import("./LazyNumberDisplay"));
 
 /**
  * A form that allows the user to enter a number and convert it to words
@@ -7,7 +11,7 @@ import { fetchData } from "../api";
  * it to words
  */
 const NumberToWordsForm = () => {
-  const [data, setData] = useState<string | null>(null);
+  const [data, setData] = useState<ResponseData | null>(null);
   const [number, setNumber] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -17,10 +21,9 @@ const NumberToWordsForm = () => {
     setLoading(true);
     setError("");
     try {
-      const result = await fetchData(
-        `http://localhost:5000/api/NumbersToWords/${number}`
-      );
-      setData(result as string);
+      const result: ResponseData = await fetchData(import.meta.env.VITE_API_URL + number);
+      
+      setData(result);
     } catch (error) {
       setError(new Error("Network response was not ok").message);
     }
@@ -44,10 +47,13 @@ const NumberToWordsForm = () => {
         >
           Convert
         </button>
-
-        {loading && <div>Loading...</div>}
-        {error && <div>{error}</div>}
-        {data && <div>{(data as unknown as { words: string }).words}</div>}
+        <Suspense fallback={(loading && <div>Loading...</div>) || null}>
+          {error ? (
+            <ErrorBoundary error={new Error("Network response was not ok")} />
+          ) : (
+            <LazyNumberDisplay data={data?.words} />
+          )}
+        </Suspense>
       </form>
     </div>
   );

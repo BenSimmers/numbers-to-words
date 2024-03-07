@@ -1,4 +1,3 @@
-
 /**
  * Fetch data from the server and return it as a promise
  * @param url - The URL to fetch data from
@@ -8,7 +7,7 @@
 export async function fetchData<T>(url: string, options?: RequestInit) {
   const response = await fetch(url, options);
   if (!response.ok) {
-    throw new Error("Network response was not ok");
+    throw new Error(response.statusText);
   }
   const data = await response.json();
   return data as T;
