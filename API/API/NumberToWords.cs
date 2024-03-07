@@ -30,33 +30,44 @@ public class NumbersToWords
     /// </summary>
     /// <param name="number"></param>
     /// <returns name="result"></returns>
-    public string NumberToWordsFunc(string number)
+    public string? NumberToWordsFunc(string number)
     {
-        string[] parts = number.Split('.');
-        BigInteger dollars = BigInteger.Parse(parts[0]);
-
-        if (parts.Length == 1 || string.IsNullOrWhiteSpace(parts[1])) // No cents or empty fractional part
+        try
         {
-            if (dollars == 0) return "";
-            return ConvertToWords(dollars, "DOLLARS");
+            string[] parts = number.Split('.');
+            BigInteger dollars = BigInteger.Parse(parts[0]);
+
+            string centsStr =
+                parts.Length > 1 ? parts[1].PadRight(2, '0') : "00"; // Ensure cents part is always two digits
+            BigInteger cents = BigInteger.Parse(centsStr.Substring(0, 2)); // Take only the first two digits of cents
+
+            if (centsStr.Length > 2 && int.Parse(centsStr.Substring(2, 1)) >= 5)
+            {
+                cents++; // Round cents if more than two digits and the third digit is greater than or equal to 5
+            }
+
+            string? dollarsWords = ConvertToWords(dollars, dollars == 1 ? "DOLLAR" : "DOLLARS");
+            string? centsWords = ConvertToWords(cents, "CENTS");
+
+            // if (dollars == 0)
+            // {
+            //     return centsWords; // No dollars, only cents
+            // }
+            // else if (cents == 0)
+            // {
+            //     return dollarsWords; // No cents, only dollars
+            // }
+            // else
+            // {
+            //     return $"{dollarsWords} AND {centsWords}"; // Both dollars and cents
+            // }
+
+            // chained ternary operator shorthand of the above if-else statement
+            return dollars == 0 ? centsWords : cents == 0 ? dollarsWords : $"{dollarsWords} AND {centsWords}";
         }
-
-        BigInteger cents = BigInteger.Parse(parts[1]);
-
-        string dollarsWords = ConvertToWords(dollars, "DOLLARS");
-        string centsWords = ConvertToWords(cents, "CENTS");
-
-        if (dollars == 0) return $"{centsWords}";
-        else
+        catch
         {
-            if (cents == 0)
-            {
-                return $"{dollarsWords}";
-            }
-            else
-            {
-                return $"{dollarsWords} AND {centsWords}";
-            }
+            return null;
         }
     }
 
@@ -67,7 +78,7 @@ public class NumbersToWords
     /// <param name="num"></param>
     /// <param name="unit"></param>
     /// <returns name="result"></returns>
-    private string ConvertToWords(BigInteger num, string unit)
+    private string? ConvertToWords(BigInteger num, string unit)
     {
         string result = "";
         if (num == 0) return "";
@@ -117,29 +128,14 @@ public class NumbersToWords
     /// <returns name="result"></returns>
     private string ConvertUnderThousand(int num)
     {
-        // Convert a number less than 1000 to words
-        string result;
-        // 0 to 999
-        switch (num)
+        return num switch // shorthand switch statement
         {
-            case 0:
-                return "";
-            case < 10: // 1 to 9
-                result = _ones[num]; // e.g. ONE, TWO, THREE, etc.
-                break;
-            case < 20: // 10 to 19
-                result = _teens[num - 10]; // e.g. TEN, ELEVEN, TWELVE, etc.
-                break;
-            case < 100: // 20 to 99
-                result = _tens[num / 10] +
-                         (num % 10 != 0 ? "-" + _ones[num % 10] : ""); // e.g. TWENTY-ONE, THIRTY-TWO, etc.
-                break;
-            default: // 100 to 999
-                result =
-                    $"{_ones[num / 100]} HUNDRED {ConvertUnderThousand(num % 100)}"; // e.g. ONE HUNDRED TWENTY-THREE, etc.
-                break;
-        }
-
-        return result.Trim();
+            0 => "", // 0
+            < 10 => _ones[num], // 1 to 9
+            < 20 => _teens[num - 10], // 10 to 19
+            < 100 => _tens[num / 10] + (num % 10 != 0 ? "-" + _ones[num % 10] : ""), // 20 to 99
+            _ => $"{_ones[num / 100]} HUNDRED" +
+                 (num % 100 != 0 ? " AND " + ConvertUnderThousand(num % 100) : "") // 100 to 999
+        };
     }
 }
