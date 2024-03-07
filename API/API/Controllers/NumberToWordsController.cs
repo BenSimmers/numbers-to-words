@@ -26,27 +26,21 @@ public class NumbersToWordsController : ControllerBase
         string? words = numbersToWords.NumberToWordsFunc(number);
         var headers = Response.Headers;
         headers.Add("Access-Control-Allow-Origin", "*");
-
-        // 404 - Not Found
-        if (string.IsNullOrEmpty(words))
-        {
-            return NotFound("NOT FOUND: Please provide a valid number or number was out of range.");
-        }
-
+        
         // 400 - Bad Request
         if (string.IsNullOrWhiteSpace(number))
         {
             return BadRequest("BAD REQUEST: Please provide a number or number was out of range");
         }
         
-        // 500
+        // 500 - Internal Server Error
         if (string.IsNullOrEmpty(words))
         {
             return StatusCode(500, "Internal Server Error");
         }
         
 
-        // 200
+        // 200 - OK
         return Ok(new { words });
     }
 }

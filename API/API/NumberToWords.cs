@@ -34,35 +34,22 @@ public class NumbersToWords
     {
         try
         {
-            string[] parts = number.Split('.');
-            BigInteger dollars = BigInteger.Parse(parts[0]);
+            string[] parts = number.Split('.', ',', ' ');
+            if (parts[0] == "") parts[0] = "0";
 
+            BigInteger dollars = BigInteger.Parse(parts[0]);
             string centsStr =
                 parts.Length > 1 ? parts[1].PadRight(2, '0') : "00"; // Ensure cents part is always two digits
             BigInteger cents = BigInteger.Parse(centsStr.Substring(0, 2)); // Take only the first two digits of cents
 
+
             if (centsStr.Length > 2 && int.Parse(centsStr.Substring(2, 1)) >= 5)
-            {
                 cents++; // Round cents if more than two digits and the third digit is greater than or equal to 5
-            }
+
 
             string? dollarsWords = ConvertToWords(dollars, dollars == 1 ? "DOLLAR" : "DOLLARS");
             string? centsWords = ConvertToWords(cents, "CENTS");
 
-            // if (dollars == 0)
-            // {
-            //     return centsWords; // No dollars, only cents
-            // }
-            // else if (cents == 0)
-            // {
-            //     return dollarsWords; // No cents, only dollars
-            // }
-            // else
-            // {
-            //     return $"{dollarsWords} AND {centsWords}"; // Both dollars and cents
-            // }
-
-            // chained ternary operator shorthand of the above if-else statement
             return dollars == 0 ? centsWords : cents == 0 ? dollarsWords : $"{dollarsWords} AND {centsWords}";
         }
         catch
