@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/bensimmers/Documents/Work/coding-challenges/numbersToWordsChallenge/API/API/API.csproj": {}
+    "/Users/bensimmers/Documents/Work/coding-challenges/numbers-to-words/API/API/API.csproj": {}
   },
   "projects": {
-    "/Users/bensimmers/Documents/Work/coding-challenges/numbersToWordsChallenge/API/API/API.csproj": {
+    "/Users/bensimmers/Documents/Work/coding-challenges/numbers-to-words/API/API/API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/bensimmers/Documents/Work/coding-challenges/numbersToWordsChallenge/API/API/API.csproj",
+        "projectUniqueName": "/Users/bensimmers/Documents/Work/coding-challenges/numbers-to-words/API/API/API.csproj",
         "projectName": "API",
-        "projectPath": "/Users/bensimmers/Documents/Work/coding-challenges/numbersToWordsChallenge/API/API/API.csproj",
+        "projectPath": "/Users/bensimmers/Documents/Work/coding-challenges/numbers-to-words/API/API/API.csproj",
         "packagesPath": "/Users/bensimmers/.nuget/packages/",
-        "outputPath": "/Users/bensimmers/Documents/Work/coding-challenges/numbersToWordsChallenge/API/API/obj/",
+        "outputPath": "/Users/bensimmers/Documents/Work/coding-challenges/numbers-to-words/API/API/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/bensimmers/.nuget/NuGet/NuGet.Config"
@@ -58,6 +58,20 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.17, 7.0.17]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.osx-arm64",
+              "version": "[7.0.17, 7.0.17]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.17, 7.0.17]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -66,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.202/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.203/RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EL9nt2YDtvPtV1LEqp9Tf2KFJ2JceAW0o7RYOzhVcq+I25NDSQT9/mcW4Ns5k1RIwTxFy+4PXnod2G6cKxcC2A==",
+  "dgSpecHash": "TFPGyDj0cbtUvL3GWsjFH2tdovXEzeN6qSJUwLvZb6Dd4Bk55SPuB3NaKPva40ee7LCJh/Trj7ea4VBIy5FzAw==",
   "success": true,
-  "projectFilePath": "/Users/bensimmers/Documents/Work/coding-challenges/numbersToWordsChallenge/API/API/API.csproj",
+  "projectFilePath": "/Users/bensimmers/Documents/Work/coding-challenges/numbers-to-words/API/API/API.csproj",
   "expectedPackageFiles": [
     "/Users/bensimmers/.nuget/packages/microsoft.aspnetcore.openapi/7.0.4/microsoft.aspnetcore.openapi.7.0.4.nupkg.sha512",
     "/Users/bensimmers/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
@@ -10,7 +10,10 @@
     "/Users/bensimmers/.nuget/packages/swashbuckle.aspnetcore/6.4.0/swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "/Users/bensimmers/.nuget/packages/swashbuckle.aspnetcore.swagger/6.4.0/swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
     "/Users/bensimmers/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.4.0/swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
-    "/Users/bensimmers/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.4.0/swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+    "/Users/bensimmers/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.4.0/swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512",
+    "/Users/bensimmers/.nuget/packages/microsoft.netcore.app.ref/7.0.17/microsoft.netcore.app.ref.7.0.17.nupkg.sha512",
+    "/Users/bensimmers/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.17/microsoft.aspnetcore.app.ref.7.0.17.nupkg.sha512",
+    "/Users/bensimmers/.nuget/packages/microsoft.netcore.app.host.osx-arm64/7.0.17/microsoft.netcore.app.host.osx-arm64.7.0.17.nupkg.sha512"
   ],
   "logs": []
 }

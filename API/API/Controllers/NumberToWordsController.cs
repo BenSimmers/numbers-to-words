@@ -22,8 +22,8 @@ public class NumbersToWordsController : ControllerBase
     public ActionResult<string> NumberToWords(string number)
     {
         // add proper error handling for 200 and 400 status codes
-        NumbersToWords numbersToWords = new NumbersToWords();
-        string? words = numbersToWords.NumberToWordsFunc(number);
+        NumbersToWords numbersToWords = new NumbersToWords(number);
+        string? words = numbersToWords.NumberToWordsFunc();
         var headers = Response.Headers;
         headers.Add("Access-Control-Allow-Origin", "*");
         

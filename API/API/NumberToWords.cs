@@ -7,6 +7,8 @@ namespace API;
 /// </summary>
 public class NumbersToWords
 {
+    private string _number { get; set; }
+
     private readonly string[] _ones =
         { "ZERO", "ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE" };
 
@@ -24,17 +26,25 @@ public class NumbersToWords
         "OCTILLION", "NONILLION", "DECILLION"
     };
 
+    public NumbersToWords(string number)
+    {
+        _number = number;
+    }
+
+
     /// <summary>
     /// We pass in the number as a string and split
     /// it into dollars and cents to convert to words
     /// </summary>
     /// <param name="number"></param>
     /// <returns name="result"></returns>
-    public string? NumberToWordsFunc(string number)
+
+    // public string? NumberToWordsFunc(string number)
+    public string? NumberToWordsFunc()
     {
         try
         {
-            string[] parts = number.Split('.', ',', ' ');
+            string[] parts = _number.Split('.', ',');
             if (parts[0] == "") parts[0] = "0";
 
             BigInteger dollars = BigInteger.Parse(parts[0]);
@@ -83,6 +93,7 @@ public class NumbersToWords
                     result = $"{groupWords} {magWord} {result}";
                 }
             }
+
 
             num /= 1000;
             magnitude += 3; // Move to the next magnitude (thousands, millions, etc.)
